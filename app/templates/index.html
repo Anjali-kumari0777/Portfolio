@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== PRIMARY META ===== -->
+  <title>{{ profile.site_name }}</title>
+  <meta name="description" content="{{ profile.description }}" />
+  <meta name="author"      content="{{ profile.name }}" />
+  <meta name="robots"      content="index, follow" />
+  <meta name="keywords"    content="Anjali Kumari, Software Engineer, Python Developer, FastAPI, Django, Kafka, AI Engineer, Backend Engineer, Noida, India, portfolio" />
+
+  <!-- ===== CANONICAL ===== -->
+  <link rel="canonical" href="{{ profile.site_url }}/" />
+
+  <!-- ===== OPEN GRAPH (LinkedIn / WhatsApp / Facebook preview) ===== -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="{{ profile.site_url }}/" />
+  <meta property="og:title"       content="{{ profile.site_name }}" />
+  <meta property="og:description" content="{{ profile.description }}" />
+  <meta property="og:image"       content="{{ profile.og_image }}" />
+  <meta property="og:image:alt"   content="Photo of {{ profile.name }}" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height"content="800" />
+  <meta property="og:locale"      content="en_IN" />
+  <meta property="og:site_name"   content="{{ profile.site_name }}" />
+
+  <!-- ===== TWITTER / X CARD ===== -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="{{ profile.site_name }}" />
+  <meta name="twitter:description" content="{{ profile.description }}" />
+  <meta name="twitter:image"       content="{{ profile.og_image }}" />
+  {% if profile.twitter %}
+  <meta name="twitter:creator"     content="{{ profile.twitter }}" />
+  {% endif %}
+
+  <!-- ===== JSON-LD STRUCTURED DATA (Google rich results) ===== -->
+  <script type="application/ld+json">
+  {{ json_ld_str }}
+  </script>
+
+  <!-- ===== FAVICON ===== -->
+  <!-- Simple emoji favicon — works everywhere without a separate file -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👩‍💻</text></svg>" />
+
+  <!-- ===== PERFORMANCE: preconnect to external origins ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+  <!-- ===== STYLESHEETS ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       SKIP LINK — accessibility: lets keyboard users jump to main content
+       ==================================================================== -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ====================================================================
+       NAVBAR
+       ==================================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#top" aria-label="{{ profile.name }} — home">AK<span class="brand-dot">.</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navMenu" aria-controls="navMenu"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#about">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">skills</a></li>
+          <li class="nav-item"><a class="nav-link nav-cta" href="#contact">contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====================================================================
+       MAIN CONTENT
+       ==================================================================== -->
+  <main id="main-content">
+
+    <!-- HERO -->
+    <header id="top" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow" aria-hidden="true">$ whoami</p>
+          <h1 class="hero-name">{{ profile.name }}</h1>
+          <p class="hero-role">{{ profile.role }} <span class="hero-role-sep" aria-hidden="true">·</span> Noida, India</p>
+          <p class="hero-tagline">{{ profile.tagline }}</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-gold">View Projects</a>
+            <a href="#contact"  class="btn btn-outline-gold">Get in Touch</a>
+          </div>
+          <div class="hero-socials" role="list" aria-label="Social links">
+            <a href="{{ profile.github }}"   target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)"   role="listitem"><i class="bi bi-github" aria-hidden="true"></i></a>
+            <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)" role="listitem"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+            <a href="mailto:{{ profile.email }}"                                        aria-label="Send email"                         role="listitem"><i class="bi bi-envelope-fill" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="photo-frame">
+            <img src="{{ profile.photo }}" alt="Photo of {{ profile.name }}, Software Engineer" class="hero-photo" width="220" height="220" loading="eager" />
+          </div>
+          <!-- Signature: animated data-pipeline card -->
+          <div class="pipeline-card">
+            <p class="pipeline-label">// data pipeline</p>
+            <div class="pipeline-track">
+              {% for stage in pipeline_stages %}
+              <div class="pipeline-stage" style="--delay:{{ loop.index0 }}">
+                <span class="pipeline-node"></span>
+                <div class="pipeline-text">
+                  <span class="pipeline-stage-label">{{ stage.label }}</span>
+                  <span class="pipeline-stage-detail">{{ stage.detail }}</span>
+                </div>
+              </div>
+              {% if not loop.last %}<span class="pipeline-arrow" aria-hidden="true">→</span>{% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container">
+        <p class="eyebrow" aria-hidden="true">$ cat about.md</p>
+        <h2 id="about-heading" class="visually-hidden">About</h2>
+        <div class="about-grid">
+          <p class="about-summary">{{ profile.description }}</p>
+          <div class="about-meta">
+            <div class="meta-row"><i class="bi bi-geo-alt" aria-hidden="true"></i><span>{{ profile.location }}</span></div>
+            <div class="meta-row"><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div>
+            <div class="meta-row"><i class="bi bi-mortarboard" aria-hidden="true"></i><span>MCA, Sharda University — 9.5 GPA</span></div>
+          </div>
+        </div>
+        <div class="education-list" role="list" aria-label="Education">
+          {% for edu in education %}
+          <div class="education-row" role="listitem">
+            <div class="education-period"><time>{{ edu.period }}</time></div>
+            <div class="education-info">
+              <h3>{{ edu.degree }}</h3>
+              <p>{{ edu.school }} <span class="dot-sep" aria-hidden="true">·</span> {{ edu.score }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section section-alt" aria-labelledby="exp-heading">
+      <div class="container">
+        <p class="eyebrow" aria-hidden="true">$ git log --author="anjali"</p>
+        <h2 id="exp-heading" class="section-title">Experience</h2>
+        <div class="timeline" role="list" aria-label="Work experience">
+          {% for job in experience %}
+          <article class="timeline-item" role="listitem">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <div class="timeline-head">
+                <h3>{{ job.role }} <span class="at-sign" aria-hidden="true">@</span> <span>{{ job.company }}</span></h3>
+                <span class="timeline-period"><time>{{ job.period }}</time></span>
+              </div>
+              <p class="timeline-location">{{ job.location }}</p>
+              <ul class="timeline-points">
+                {% for point in job.points %}<li>{{ point }}</li>{% endfor %}
+              </ul>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <div class="container">
+        <p class="eyebrow" aria-hidden="true">$ ls projects/</p>
+        <h2 id="projects-heading" class="section-title">Projects</h2>
+        <div class="row g-4">
+          {% for project in projects %}
+          <div class="col-12 col-lg-4">
+            <article class="project-card" aria-label="{{ project.name }}">
+              <div class="project-icon" aria-hidden="true"><i class="bi bi-{{ project.icon }}"></i></div>
+              <h3>{{ project.name }}</h3>
+              <p class="project-tagline">{{ project.tagline }}</p>
+              <p class="project-desc">{{ project.description }}</p>
+              <div class="project-stack" role="list" aria-label="Technologies used">
+                {% for tech in project.stack %}
+                <span class="stack-tag" role="listitem">{{ tech }}</span>
+                {% endfor %}
+              </div>
+              <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="project-link"
+                 aria-label="View {{ project.name }} on GitHub (opens in new tab)">
+                View on GitHub <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </article>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
+      <div class="container">
+        <p class="eyebrow" aria-hidden="true">$ pip list</p>
+        <h2 id="skills-heading" class="section-title">Skills</h2>
+        <div class="skills-grid">
+          {% for category, items in skills.items() %}
+          <div class="skill-block">
+            <h3>{{ category }}</h3>
+            <ul class="skill-tags" aria-label="{{ category }} skills">
+              {% for item in items %}
+              <li class="skill-tag">{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="container text-center">
+        <p class="eyebrow" aria-hidden="true">$ ./connect.sh</p>
+        <h2 id="contact-heading" class="section-title">Let's build something.</h2>
+        <p class="contact-sub">Open to backend and AI engineering roles where I can ship real pipelines that hold up under load.</p>
+        <div class="contact-actions">
+          <a href="mailto:{{ profile.email }}" class="btn btn-gold btn-lg">
+            <i class="bi bi-envelope-fill" aria-hidden="true"></i> {{ profile.email }}
+          </a>
+        </div>
+        <div class="hero-socials contact-socials" role="list" aria-label="Social links">
+          <a href="{{ profile.github }}"   target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)"   role="listitem"><i class="bi bi-github" aria-hidden="true"></i></a>
+          <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" role="listitem"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> {{ profile.name }}. Built with FastAPI, Jinja2 &amp; Bootstrap.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
