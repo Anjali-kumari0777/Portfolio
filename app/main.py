@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # ---------------------------------------------------------------------------
 # Site-wide constants — update these if you ever change domain / photo
 # ---------------------------------------------------------------------------
-SITE_URL   = "https://anjali-kumari.dev"          # change to your real domain
+SITE_URL   = SITE_URL = "https://portfolio-mie8.onrender.com"        
 SITE_NAME  = "Anjali Kumari — Software Engineer"
 OG_IMAGE   = f"{SITE_URL}/static/images/profile.jpg"
 TWITTER_HANDLE = ""   # add "@handle" if you have one
@@ -250,8 +250,13 @@ SITEMAP_URLS = [
 # ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    # Redirect to the inline SVG emoji favicon
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="data:,")
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def home(request: Request):
     return templates.TemplateResponse(
         request=request,
